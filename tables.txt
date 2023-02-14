@@ -1,0 +1,141 @@
+rubrics
+- id
+- parent id
+- name (unique)
+
+CREATE TABLE rubrics (
+  id SERIAL PRIMARY KEY,
+  parent_id INT,
+  name VARCHAR(50) NOT NULL UNIQUE
+);
+
+
+
+users
+- id
+- username (unique)
+- first_name
+- last_name
+- email (unique)
+- phone
+- active_payment_id
+- delivery_address
+- personal_discount
+- created_at
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  email VARCHAR(120) NOT NULL UNIQUE,
+  phone VARCHAR(15),
+  active_payment_id INT,
+  delivery_address TEXT,
+  personal_discount_id INT,
+  created_at TIMESTAMP
+);
+
+
+
+passwords
+- id
+- user_id (unique)
+- password_hash
+
+CREATE TABLE passwords (
+  id SERIAL PRIMARY KEY,
+  password_hash VARCHAR(120) NOT NULL,
+  user_id INT NOT NULL UNIQUE
+);
+
+
+
+discount_types
+- id
+- name (unique)
+- percent
+
+CREATE TABLE discount_types (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL UNIQUE,
+  percent INT NOT NULL
+);
+
+
+
+
+payments
+- id
+- user_id
+- payment_method
+- created_at
+
+CREATE TABLE payments (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  payment_method VARCHAR(120) NOT NULL UNIQUE,
+  percent INT NOT NULL
+);
+
+
+
+payment_methods
+- id
+- method (unique)
+
+CREATE TABLE payment_methods (
+  id SERIAL PRIMARY KEY,
+  method VARCHAR(120) NOT NULL UNIQUE
+);
+
+
+
+
+cart
+- id
+- user_id
+- product_id
+- product_count
+- added_at
+
+products
+- id
+- rubric_id
+- name
+- brand_id
+- size
+- color
+- season
+- description
+- main_photo (unique)
+- price
+- count_available
+- product_discount
+- updated_at
+
+product_photos
+- id
+- url (unique)
+- product_id
+- size
+
+brands
+- id
+- name
+- description
+- site_url
+
+orders
+- id
+- user_id
+- created_at
+- status
+
+order_statuses
+- id
+- name (unique)
+
+ordered_products
+- product_id
+- count
+- order_id
