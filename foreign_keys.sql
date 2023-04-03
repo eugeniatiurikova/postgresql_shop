@@ -8,17 +8,20 @@ ALTER TABLE users
 	REFERENCES payment_methods (id)
 		ON DELETE CASCADE;
 
+
 ALTER TABLE passwords
 	ADD CONSTRAINT passwords_tokens_user_id_fk
 	FOREIGN KEY (user_id)
 	REFERENCES users (id)
 		ON DELETE RESTRICT;
 
+
 ALTER TABLE payment_methods
 	ADD CONSTRAINT payment_methods_discounts_fk
 	FOREIGN KEY (discount_id)
 	REFERENCES discounts (id)
 		ON DELETE CASCADE;
+
 
 ALTER TABLE payments_users
 	ADD CONSTRAINT payments_users_fk
@@ -29,6 +32,7 @@ ALTER TABLE payments_users
 	FOREIGN KEY (payment_id)
 	REFERENCES payment_methods (id)
 		ON DELETE CASCADE;
+
 
 ALTER TABLE cart
 	ADD CONSTRAINT cart_users_fk
@@ -43,6 +47,7 @@ ALTER TABLE cart
 	FOREIGN KEY (discount_id)
 	REFERENCES discounts (id)
 		ON DELETE CASCADE;
+
 
 ALTER TABLE products
 	ADD CONSTRAINT products_rubrics_fk
@@ -66,11 +71,13 @@ ALTER TABLE products
 	REFERENCES products_types (id)
 		ON DELETE CASCADE;
 
+
 ALTER TABLE product_photos
 	ADD CONSTRAINT photos_products_fk
 	FOREIGN KEY (product_id)
 	REFERENCES products (id)
 		ON DELETE CASCADE;
+
 
 ALTER TABLE orders
 	ADD CONSTRAINT order_user_id_fk
@@ -81,6 +88,7 @@ ALTER TABLE orders
 	FOREIGN KEY (status)
 	REFERENCES orders_statuses (id)
 		ON DELETE CASCADE;
+
 
 ALTER TABLE ordered_products
 	ADD CONSTRAINT order_product_id_fk
